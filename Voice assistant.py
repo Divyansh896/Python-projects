@@ -7,8 +7,6 @@ import time
 import wikipedia
 import socket
 import random
-import smtplib
-from email.message import EmailMessage
 import pyautogui
 
 
@@ -101,32 +99,6 @@ def takeCommand():
 
 
 
-def read_pdf():
-    pass
-
-# to send email
-def send_email(receiver,subject,body):
-    server = smtplib.SMTP('smtp.gmail.com',587 )
-    server.starttls()
-    server.login('divyansh3838@gmail.com', 'divyansh008')
-    email=EmailMessage()
-    email['from']='divyansh3838@gmail.com'
-    email['To']=receiver
-    email['subject']=subject
-    email.set_content(body)
-    server.send_message(email)
-
-def get_email_info():
-    speak("to whom i send mail")
-    name=takeCommand().lower()
-    receiver=email_list[name]
-    print(receiver)
-    speak('what is the  subject sir')
-    subject=takeCommand().lower()
-    speak('tell me the body of the mail.')
-    body=takeCommand().lower()
-    send_email(receiver,subject,body)
-
 
 
 # commands that program will execute
@@ -177,7 +149,7 @@ def commands():
             y = int(time.strftime("%M"))
             speak("what should i send sir")
 
-            kit.sendwhatmsg("+917658035218", takeCommand().lower(), 4, 47, wait_time=10)
+            kit.sendwhatmsg("phone number", takeCommand().lower(), 4, 47, wait_time=10)
             speak("message send successfully ")
 
         elif 'what is the time'  in query:
@@ -188,14 +160,7 @@ def commands():
             x = date.today()
             speak(f"sir the date is {x}")
 
-        elif'send email'in query:
-            get_email_info()
-
-
-        elif 'what is temperature in phagwara' in query:
-            pass
-
-
+    
         elif 'exit' in query:
             speak("exiting sir have a nice day")
             quit()
